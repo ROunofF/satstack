@@ -49,5 +49,9 @@ func GetRouter(s *svc.Service) *gin.Engine {
 		addressesRouter.GET(":addresses/transactions", handlers.GetAddresses(s))
 	}
 
+	addressRouter := currencyRouter.Group("/address")
+	{
+		addressRouter.GET(":addresses/txs", handlers.GetV4Addresses(s))
+	}
 	return engine
 }
