@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/ledgerhq/satstack/httpd/svc"
+	"github.com/ledgerhq/satstack/types"
 	"github.com/ledgerhq/satstack/utils"
 
 	"github.com/gin-gonic/gin"
@@ -58,5 +59,14 @@ func GetAddresses(s svc.AddressesService) gin.HandlerFunc {
 		})
 
 		ctx.JSON(http.StatusOK, addresses)
+	}
+}
+
+func GetPendingAddresses(s svc.AddressesService) gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		var addresses types.Addresses
+		addresses.Transactions = []types.Transaction{}
+
+		ctx.JSON(http.StatusOK, addresses.Transactions)
 	}
 }
