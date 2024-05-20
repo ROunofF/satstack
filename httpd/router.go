@@ -26,6 +26,7 @@ func GetRouter(s *svc.Service) *gin.Engine {
 		baseRouter.GET("explorer/_health", handlers.GetHealth(s))
 		baseRouter.GET("explorer/status", handlers.GetStatus(s))
 		baseRouter.GET("btc/network", handlers.GetNetwork(s))
+		baseRouter.GET("btc/block/:block", handlers.GetBlock(s))
 	}
 
 	currencyRouter := baseRouter.Group(s.Bus.Currency)
